@@ -13,6 +13,29 @@ import {
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  // tslint:disable-next-line: variable-name
+  validation_messages = {
+    email: [
+      {
+        type: 'required',
+        message: 'El email es requerido.'
+      },
+      {
+        type: 'pattern',
+        message: 'No es un email válido.'
+      },
+    ],
+    password: [
+      {
+        type: 'required',
+        message: 'El password es requerido.'
+      },
+      {
+        type: 'minlength',
+        message: 'El password debe tener al menos 5 caracteres.'
+      },
+    ]
+  };
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -21,6 +44,12 @@ export class LoginPage implements OnInit {
         '', Validators.compose([
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        ])
+      ),
+      password: new FormControl(
+        '', Validators.compose([
+          Validators.required,
+          Validators.minLength(5)
         ])
       )
     });
