@@ -62,6 +62,7 @@ export class LoginPage implements OnInit {
       )
     });
   }
+
   loginUser(credentials) {
     console.log(credentials);
     this.authService.loginUser(credentials)
@@ -73,6 +74,10 @@ export class LoginPage implements OnInit {
       .catch(error => {
         this.errorMessage = error;
       });
+  }
+
+  goToRegister() {
+    this.navCtrl.navigateForward('/register');
   }
   ngOnInit() {
   }
