@@ -5,14 +5,15 @@ import * as dataArtists from './artists.json';
   providedIn: 'root'
 })
 export class PlatziMusicService {
-
-  constructor() { }
+  constructor() {}
 
   getNewReleases() {
-    return fetch('https://platzi-music-api.now.sh/browse/new-releases')
-    .then(res => res.json());
+    return fetch('https://platzi-music-api.now.sh/browse/new-releases').then(res => res.json());
   }
-  getArtists(){
+  getArtists() {
     return dataArtists.items;
+  }
+  getArtistTopTracks(artistId) {
+    return fetch(`https://platzi-music-api.now.sh/artists/${artistId}/top-tracks?country=UY`).then(res => res.json());
   }
 }
