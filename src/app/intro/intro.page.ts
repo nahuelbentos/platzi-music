@@ -4,13 +4,13 @@ import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
-  styleUrls: ['./intro.page.scss'],
+  styleUrls: ['./intro.page.scss']
 })
 export class IntroPage implements OnInit {
   slideOpts = {
     initialSlide: 0,
-    slidePerView: 1,
-    centeredLsides: true,
+    slidesPerView: 1,
+    centeredSlides: true,
     speed: 400
   };
   slides = [
@@ -42,14 +42,12 @@ export class IntroPage implements OnInit {
       icon: 'bicycle'
     }
   ];
-  constructor(private router: Router, private storage: Storage) { }
+  constructor(private router: Router, private storage: Storage) {}
 
   finish() {
     this.storage.set('isIntroShowed', true);
     this.router.navigateByUrl('/home');
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
