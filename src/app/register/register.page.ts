@@ -56,13 +56,13 @@ export class RegisterPage {
       nombre: new FormControl(
         '', Validators.compose([
           Validators.required,
-          Validators.minLength(10)
+          Validators.minLength(3)
         ])
       ),
       apellido: new FormControl(
         '', Validators.compose([
           Validators.required,
-          Validators.minLength(10)
+          Validators.minLength(3)
         ])
       )
     });
