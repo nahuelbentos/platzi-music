@@ -12,8 +12,16 @@ export class HomePage {
   songs: any[] = [];
   albums: any[] = [];
   artists: any[] = [];
-  song: any = {};
-  currentSong: any = {};
+  song: {
+    preview_url: string;
+    playing: boolean;
+    name: string;
+  } = {
+    preview_url: '',
+    playing: false,
+    name: ''
+  };
+  currentSong: HTMLAudioElement;
   newTime: any;
 
   slideOpts = {
@@ -50,7 +58,7 @@ export class HomePage {
     });
     return await modal.present();
   }
-  
+
   async showSongs(artist) {
     const songs = await this.musicService.getArtistTopTracks(artist.id);
     const modal = await this.modalController.create({

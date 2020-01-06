@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button>
+
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+<ion-avatar (click)="takePhoto()">
+  <img [src]="userImage" *ngIf="!photo">
+  <img [src]="photo" *ngIf="photo">
+</ion-avatar>
+</ion-content>
