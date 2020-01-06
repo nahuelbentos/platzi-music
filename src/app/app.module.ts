@@ -14,6 +14,9 @@ import {AgmCoreModule} from '@agm/core';
 import { SongsModalPageModule } from './songs-modal/songs-modal.module';
 import { environment } from 'src/environments/environment';
 
+import { Vibration } from '@ionic-native/vibration/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +31,12 @@ import { environment } from 'src/environments/environment';
     }),
     IonicStorageModule.forRoot()
   ],
-  providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    StatusBar,
+    Vibration,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'sports',
         loadChildren: () => import('../sports/sports.module').then(m => m.SportsPageModule)
+      },
+      {
+        path: 'test',
+        loadChildren: () => import('../test-components/test-components.module').then(m => m.TestComponentsPageModule)
       }
     ]
   }

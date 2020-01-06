@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Test</ion-title>
+    <ion-buttons slot="start">
+      <ion-button icon-only (click)="goHome()">
+        <ion-icon name="md-arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button>
+
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-buttons>
+    <ion-button expand="block" fill="outline" (click)="vibrar()" >Vibrar</ion-button>
+    <ion-button expand="block" fill="outline" (click)="vibrar2()" >Vibrar2</ion-button>
+    <ion-button expand="block" fill="outline" (click)="stop()" >stop</ion-button>
+  </ion-buttons>
+</ion-content>
