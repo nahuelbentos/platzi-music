@@ -16,4 +16,8 @@ export class PlatziMusicService {
   getArtistTopTracks(artistId) {
     return fetch(`https://platzi-music-api.now.sh/artists/${artistId}/top-tracks?country=UY`).then(res => res.json());
   }
+
+  getAlbumTracks(albumId) {
+    return fetch(`https://platzi-music-api.now.sh/albums/${albumId}/tracks?country=UY`).then(response => response.json());
+  }
 }
