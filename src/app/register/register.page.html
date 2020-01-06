@@ -1,22 +1,22 @@
-<ion-header>
+<ion-header padding>
   <ion-toolbar>
-    <ion-buttons>
+    <ion-buttons slot="start">
       <ion-button (click)="goToLogin()">
-        Back
+        <ion-icon name="md-arrow-back" size="large" color="success"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <figure text-center padding>
-    <img src="assets/img/logo.png">
+    <img src="assets/img/logo.png"  width="100px">
   </figure>
-  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
 
     <ion-item>
-      <ion-label>Nombre</ion-label>
-      <ion-input formControlName="nombre"></ion-input>
+      <ion-label position="floating" color="success">Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>      
     </ion-item>
     <div class="validation-error">
       <ng-container *ngFor="let validation of validation_messages.nombre">
@@ -29,7 +29,7 @@
     </div>
 
     <ion-item>
-      <ion-label>Apellido</ion-label>
+      <ion-label position="floating" color="success">Apellido</ion-label>
       <ion-input formControlName="apellido"></ion-input>
     </ion-item>
     <div class="validation-error">
@@ -43,7 +43,7 @@
     </div>
 
     <ion-item>
-      <ion-label>Email</ion-label>
+      <ion-label position="floating" color="success">Email</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
     <div class="validation-error">
@@ -56,8 +56,12 @@
       </ng-container>
     </div>
     <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
+      <ion-label position="floating" color="success">Contraseña</ion-label>
+      <ion-input 
+        formControlName="password"
+          type="password"
+          class="form-controll"
+          required></ion-input>
     </ion-item>
     <div class="validation-error">
       <ng-container *ngFor="let validation of validation_messages.password">
@@ -70,9 +74,15 @@
       </ng-container>
     </div>
 
-    {{ errorMessage }}
-    <ion-button expand="full" shape="round" color="success" [disabled]="registerForm.invalid" type="submit">
+    <ion-button
+      shape="round"
+      class="submit-btn button-block"
+      color="success"
+      type="submit"
+      [disabled]="!registerForm.valid"
+      >Registrar</ion-button>
 
-      Registrar</ion-button>
+    <label class="error-message">{{ errorMessage }}</label>
+    <label class="success-message">{{ successMessage }}</label>
   </form>
 </ion-content>

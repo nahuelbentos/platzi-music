@@ -1,7 +1,11 @@
-
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="success">
     <ion-title>Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-button icon-only (click)="goHome()">
+        <ion-icon name="md-arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-menu-button>
 
@@ -35,4 +39,14 @@
     </ion-grid>
 
   </div>
+  <ion-list lines="none" color="primary">
+    <ion-item>
+      Cuenta
+    </ion-item>
+    <ion-item>Favoritos</ion-item>
+    <ion-item>Playlists</ion-item>
+    <ion-item>Deportes</ion-item>
+    <ion-item>Localidades</ion-item>
+    <ion-item>Tracking</ion-item>
+  </ion-list>
 </ion-content>

@@ -18,6 +18,10 @@ export class PlatziMusicService {
   }
 
   getAlbumTracks(albumId) {
-    return fetch(`https://platzi-music-api.now.sh/albums/${albumId}/tracks?country=UY`).then(response => response.json());
+    return fetch(`https://platzi-music-api.now.sh/albums/${albumId}/tracks?country=CO`).then(response => response.json());
+  }
+  
+  searchTracks(text) {
+    return fetch(`https://platzi-music-api.now.sh/search?q=${text}&type=track`).then(response => response.json());
   }
 }

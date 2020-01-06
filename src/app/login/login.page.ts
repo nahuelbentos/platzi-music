@@ -1,67 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators
-} from '@angular/forms';
-import { AuthenticateService } from '../services/authenticate.service';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss']
 })
-export class LoginPage implements OnInit {
-  loginForm: FormGroup;
-  // tslint:disable-next-line: variable-name
-  validation_messages = {
-    email: [
-      {
-        type: 'required',
-        message: 'El email es requerido.'
-      },
-      {
-        type: 'pattern',
-        message: 'No es un email válido.'
-      },
-    ],
-    password: [
-      {
-        type: 'required',
-        message: 'El password es requerido.'
-      },
-      {
-        type: 'minlength',
-        message: 'El password debe tener al menos 5 caracteres.'
-      },
-    ]
-  };
-  errorMessage: string;
+export class LoginPage {
+  validationsForm: FormGroup;
+  errorMessage = '';
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthenticateService,
     private navCtrl: NavController,
+    private authService: AuthenticateService,
+    private formBuilder: FormBuilder,
     private storage: Storage
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.validationsForm = this.formBuilder.group({
       email: new FormControl(
-        '', Validators.compose([
-          Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-        ])
+        '',
+        Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])
       ),
-      password: new FormControl(
-        '', Validators.compose([
-          Validators.required,
-          Validators.minLength(5)
-        ])
-      )
+      password: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
     });
   }
+
+  validationMessages = {
+    email: [
+      { type: 'required', message: 'El email es requerido.' },
+      { type: 'pattern', message: 'Por favor ingrese un email válido' }
+    ],
+    password: [
+      { type: 'required', message: 'El password es requerido.' },
+      {
+        type: 'minlength',
+        message: 'El password debe tener al menos 5 caracteres'
+      }
+    ]
+  };
 
   loginUser(credentials) {
     console.log(credentials);
@@ -76,10 +55,7 @@ export class LoginPage implements OnInit {
       });
   }
 
-  goToRegister() {
+  goToRegisterPage() {
     this.navCtrl.navigateForward('/register');
   }
-  ngOnInit() {
-  }
-
 }

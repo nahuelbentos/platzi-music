@@ -11,21 +11,52 @@ export class AuthenticateService {
     private storage: Storage
   ) { }
 
-  async loginUser(credential) {
-    const user = await this.storage.get('user');
-    return new Promise((accept, reject) => {
-      if ((credential.email === 'test@test.com' && credential.password === '12345') ||
-        (credential.email === user.email && btoa(credential.password) === user.password)) {
-        accept('Login correcto');
-      } else {
-        reject('Login incorrecto');
-      }
 
-    });
+  loginUser(credentials) {
+    const key = credentials.email;
+    const encryptedPass = credentials.password;
+    console.log('key:', key);
+    console.log('encryptedPass:', encryptedPass);
+    console.log('Credentials:', credentials);
+    if (key === 'test@test.com' && encryptedPass === '12345') {
+      return new Promise((accept, reject) => {
+        if (key === 'test@test.com' && encryptedPass === '12345') {
+          console.log('ok');
+          accept(credentials);
+        } else {
+          console.log('no ok');
+          reject('Login incorrecto');
+        }
+      });
+    } else {
+        return new Promise((accept, reject) => {
+          this.storage.get(key).then(usuario => {
+            if (usuario) {
+              if (btoa(encryptedPass) === usuario.password) {
+                accept(usuario);
+              } else {
+                reject('Contraseña incorrecta');
+              }
+            }
+          });
+        });
+      }
   }
 
-  registerUser(userData) {
-    userData.password = btoa(userData.password);
-    return this.storage.set('user', userData);
+  registerUser(value) {
+    return new Promise((accept, reject) => {
+      this.storage.get(value.email).then(usuario => {
+        if (usuario) {
+          console.log(usuario);
+          reject('El usuario ya existe');
+        } else {
+          // Un poco 'Minimo' de seguridad
+          value.password = btoa(value.password);
+          this.storage.set(value.email, value).then(() => {
+            accept('El usuario se ha creado con éxito');
+          });
+        }
+      });
+    });
   }
 }
